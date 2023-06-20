@@ -1,0 +1,220 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Super Simple Water Calculator using a Salifert Kit and CRS</title>
+
+
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+
+
+</head>
+
+<body style="margin-top:0">
+
+<div style="text-align:center;">
+  <h1>Super Simple Water Calculator<br /><small>Using a Salifert Alkalinity Testing Kit and CRS</small></h1>
+</div>
+
+
+
+<div class="container" style="text-align:center">
+
+<hr />
+<br />
+
+<div id="intro">
+<h2>How are you treating your water?</h2>
+<br />
+This test assumes you have a Salifert Alkalinity (Kg/Alk) Testing kit. If you don't have one, these can be purchased for around £10 from a pet store, or online. It also assumes you have some acid called "CRS" or now called "AMS" which is a carbonate reducing solution. This can be purchased online or from any home brew shop for less than £5.
+<br /><br />
+
+<select name="type" size="1" id="type" style="height:40px">
+<option value="1" selected>I'm treating all my water together (strike and sparge water all in one bucket)</option>
+<option value="2">I'm treating my sparge and strike water seperately</option>
+</select>
+<br /><br />
+<input type="submit" value="Continue..." id="submit" class="btn btn-primary"/>
+</div>
+
+
+<div id="part1" style="display:none">
+
+<h2>I'm treating all my water together (strike and sparge water all in one bucket)</h2>
+<hr />
+Note: Your MEQ/L reading is on the far right column of the sheet that comes with your Salifert kit. This is not your CaCO3 reading. If you only have a CaCO3 reading, simply divide this by 50 to get your MEQ/L reading - e.g. <strong>100 CaCO3 / 50 = 2 MEQ/L</strong>
+<hr />
+<br />
+I have a Alkalinity (MEQ/L) reading of 
+<input type="number" id="all_reading"/> according to my salifert kit
+<br /><br />
+I'm using a total of
+<input type="number" id="all_total"/> litres for my beer (including all strike and sparge water).
+<br /><br />
+I'm brewing a
+<select name="type" size="1"  id="all_type">
+<option value="20" selected>Lager</option>
+<option value="30">Pale beer (little or no crystal malts)</option>
+<option value="60">Bitter (small-moderate amount of crystal malts)</option>
+<option value="100">Mild / Porter (more crystal and roast)</option>
+<option value="125">Stout (high percentage of roast)</option>
+
+</select>
+<br />
+<br />
+
+<input type="submit" value="How much CRS/AMS should I add?" id="all_submit" class="btn btn-primary"/>
+<br /><br />
+<div class="alert alert-success" id="all_answer" style="display:none">You need to add <strong id="all_answer1"></strong><strong>ml</strong> of CRS to your water.</div>
+<div class="alert alert-danger" id="all_calcium" style="display:none">By your alkalinity figure it looks like your calcium is below 50ppm. Please consider...<br />
+&bull; For a hoppy beer add a teaspoon of gypsum per 23 litres of beer. Half in the strike water and half directly in the boil.<br />
+&bull; For a malty beer add a teaspoon of calcium chloride per 23 litres of beer. Half in the strike water and half directly in the boil.<br />
+Calcium is useful for yeast health to ensure your beer ferments properly and settles properly after fermentation.
+</div>
+</div>
+
+
+
+<div id="part2" style="display:none">
+
+<h1>I'm treating my sparge and strike water seperately</h1>
+<hr />
+Note: Your MEQ/L reading is on the far right column of the sheet that comes with your Salifert kit. This is not your CaCO3 reading. If you only have a CaCO3 reading, simply divide this by 50 to get your MEQ/L reading - e.g. <strong>100 CaCO3 / 50 = 2 MEQ/L</strong>
+<hr />
+<br />
+I have a Alkalinity (MEQ/L) reading of 
+<input type="number" id="sep_reading"/>
+according to my salifert kit <br />
+<br />
+I'm using
+<input type="number" id="sep_strike"/> 
+litres for my strike water, and <input type="number" id="sep_sparge"/> for my sparge water.
+<br /><br />
+I'm brewing a
+<select name="type" size="1" id="sep_type">
+<option value="20" selected>Lager</option>
+<option value="30">Pale beer (little or no crystal malts)</option>
+<option value="60">Bitter (small-moderate amount of crystal malts)</option>
+<option value="100">Mild / Porter (more crystal and roast)</option>
+<option value="125">Stout (high percentage of roast)</option>
+
+</select>
+<br />
+<br />
+
+<input type="submit" value="How much CRS/AMS should I add?" id="sep_submit" class="btn btn-primary"/>
+<br /><br />
+<div class="alert alert-success" id="sep_answer" style="display:none">You need to add <strong id="sep_answer1"></strong><strong>ml</strong> of CRS to your strike water, and <strong id="sep_answer2"></strong><strong>ml</strong> of CRS to your sparge water</div>
+<div class="alert alert-danger" id="sep_calcium" style="display:none">By your alkalinity figure it looks like your calcium is below 50ppm. Please consider...<br />
+&bull; For a hoppy beer add a teaspoon of gypsum per 23 litres of beer directly into your boiling wort.<br />
+&bull; For a malty beer add a teaspoon of calcium chloride per 23 litres of beer directly into your boiling wort.<br />
+Calcium is useful for yeast health to ensure your beer ferments properly and settles properly after fermentation.
+</div>
+</div>
+
+</div>
+
+
+
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+<script>
+
+$('html').on('click', "#submit", function(){ 
+	$("#intro").hide();
+	
+
+	
+	if($("#type").val()==1){
+		$("#part1").show(300);
+	}
+	if($("#type").val()==2){
+		$("#part2").show(300);
+	}
+});
+
+
+
+
+$('html').on('click', "#all_submit", function(){ 
+	
+	$current = $("#all_reading").val() *50;
+	$desired = $("#all_type").val();
+	$total = $("#all_total").val();
+	
+	$difference = $current - $desired;
+	$needed = ($difference * $total) / 183;
+	$needed = $needed.toFixed(1);
+	
+	if($current>1&&$desired>1&&$total>1){
+		$("#all_answer").html("You need to add <strong id='all_answer1'></strong><strong>ml</strong> of CRS to your water.");
+		$("#all_answer").show(500);
+		$("#all_answer1").html($needed);
+		$('html, body').animate({scrollTop: $("#all_answer").offset().top}, 400);
+		
+		if($needed<0){
+			$("#all_answer").html("You shouldn't be adding any CRS to your water. The calculator suggests you should add <strong>"+$needed+" ml</strong> of CRS, which is impossible! If this negative figure is only small, you may be in range for this type of beer. Alternatively, please look into other means of <em>increasing</em> alkalinity like sodium bicarbonate or diluting with another water source.");
+		}
+		
+		if(($current*0.4) < 50){
+			$("#all_calcium").show(500);
+		}else{
+			$("#all_calcium").hide(500);
+		}
+	}
+	
+	
+});
+
+
+$('html').on('click', "#sep_submit", function(){ 
+	
+	$current = $("#sep_reading").val() *50;
+	$desired = $("#sep_type").val();
+	$strike = $("#sep_strike").val();
+	$sparge = $("#sep_sparge").val();
+	
+	$difference = $current - $desired;
+	
+	$needed_strike = ($difference * $strike) / 183;
+	$needed_strike = $needed_strike.toFixed(1);
+	
+	$needed_sparge = ($difference * $sparge) / 183;
+	$needed_sparge = $needed_sparge.toFixed(1);
+	
+	if($current>1&&$desired>1&&$strike>1&&$sparge>1){
+		$("#sep_answer").html("You need to add <strong id='sep_answer1'></strong><strong>ml</strong> of CRS to your strike water, and <strong id='sep_answer2'></strong><strong>ml</strong> of CRS to your sparge water");
+		$("#sep_answer").show(500);
+		$('html, body').animate({scrollTop: $("#sep_answer").offset().top}, 400);
+		
+		$("#sep_answer1").html($needed_strike);
+		$("#sep_answer2").html($needed_sparge);
+		
+
+		if($needed_strike<0){
+			$("#sep_answer").html("You shouldn't be adding any CRS to your water. The calculator suggests you should add <strong>"+$needed_strike+" ml</strong> of CRS to yourt strike water and <strong>"+$needed_sparge+" ml</strong> to your sparge water, which is impossible! If this negative figure is only small, you may be in range for this type of beer. Alternatively, please look into other means of <em>increasing</em> alkalinity like sodium bicarbonate or diluting with another water source.");
+		}
+		
+		if(($current*0.4) < 50){
+			$("#sep_calcium").show(500);
+		}else{
+			$("#sep_calcium").hide(500);
+		}
+		
+	}
+	
+	
+});
+</script>
+</body>
+</html>
